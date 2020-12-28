@@ -19,25 +19,14 @@ Route::get('/', function () {
 });
 
 
-Route::get('/userss/{name}', function($name) {
-    return " Olá ".$name;
-})->where('name', '[A-Za-z]+');
-
-Route::get('/cliente', function() {
-    return " Olá ";
-})->name('usercliente');
-
-Route::get('/fornecedor/{id}', function($id) {
-    return " Olá ".$id;
-});
-
-
-Route::get('/user', [UserController::class, 'index']);
-
-
 Route::fallback(function() {
     return "Nenhuma rota existe";
 });
 
 
-Route::resource('user2', UserController::class)->only(['index']);
+Route::resource('user', UserController::class)->only(['index']);
+
+
+Route::get('/teste', function() {
+    return view('teste', ['name' => 'Marcelo Bianco']);
+});
