@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\CredenciamentoController;
+use App\Http\Controllers\ArquivosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,13 @@ Route::fallback(function() {
 
 Route::resource('user', UserController::class)->only(['index']);
 
+Route::resource('credenciamento', CredenciamentoController::class)->only(['index']);
+
+Route::resource('arquivos', ArquivosController::class)->only(['index']);
 
 Route::get('/teste', function() {
     return view('teste', ['name' => 'Marcelo Bianco']);
 });
+
+Route::post('arquivos/store', ArquivosController::class.'@filesStore')->name('file.store');
+Route::get('arquivos/delete/{id}', ArquivosController::class.'@filesDelete')->name('file.delete');
